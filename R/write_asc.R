@@ -5,7 +5,7 @@
 #' @keywords csv_file
 #' @import RangeShiftR
 #' @import dismo
-#' @import RStoolbox
+#' @import ENMTools
 #' @import magrittr
 #' @import dplyr
 #' @importFrom rgbif occ_data
@@ -73,8 +73,8 @@ write_asc <- function(csv_file, folder = "data/"){
 
     # pca
 
-    pcamap <- RStoolbox::rasterPCA(bioclim.data, spca = T)
-    bioclim.pca <- raster::subset(x = pcamap$map, c(1, 2))
+    pcamap <- raster.pca(bioclim.data, 2)
+    bioclim.pca <- pcamap$rasters
 
     # Build species distribution model
 
@@ -130,8 +130,8 @@ write_asc <- function(csv_file, folder = "data/"){
 
     # pca
 
-    pcamap_fore <- RStoolbox::rasterPCA(forecast.data, spca = T)
-    fore.pca <- raster::subset(x = pcamap_fore$map, c(1, 2))
+    pcamap_fore <- raster.pca(forecast.data, 2)
+    fore.pca <- pcamap$rasters
 
     # Predict forecast from species distribution model
 
